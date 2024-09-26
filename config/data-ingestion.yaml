@@ -1,0 +1,11 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion 
+  mongo_uri: "mongodb+srv://Minich:Mydatabase.456@minich-data-repository.gzlkk1s.mongodb.net/?retryWrites=true&w=majority&appName=Minich-Data-Repository"
+  database_name: smarthome
+  collection_name: smokedata
+  batch_size: 20000
+  slack_webhook_url: https://hooks.slack.com/services/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
+
+
