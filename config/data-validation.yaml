@@ -1,0 +1,24 @@
+
+artifacts_root: artifacts
+
+data_validation:
+  root_dir: artifacts/data_validation
+  data_dir: artifacts/data_ingestion/smoke_data.parquet
+  val_status: artifacts/data_validation/validation_status.json
+  slack_webhook_url: https://hooks.slack.com/services/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
+  critical_columns:
+    - 'UTC'
+    - 'Temperature[C]'
+    - 'Air_Humidity[%]'
+    - 'TVOC[ppb]'
+    - 'eCO2[ppm]'
+    - 'Raw_H2'
+    - 'Raw_Ethanol'
+    - 'Air_Pressure[hPa]'
+    - 'PM_1_0'
+    - 'PM_2_5'
+    - 'NC_0_5'
+    - 'NC_1_0'
+    - 'NC_2_5'
+    - 'CNT'
+    - 'Fire_Alarm'         

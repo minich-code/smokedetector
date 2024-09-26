@@ -1,0 +1,37 @@
+columns:
+  UTC: 
+    type: integer
+  Temperature[C]:
+    type: float
+  Air_Humidity[%]:
+    type: float
+  TVOC[ppb]:
+    type: integer
+  eCO2[ppm]:
+    type: integer
+  Raw_H2:
+    type: integer
+  Raw_Ethanol:
+    type: integer
+  Air_Pressure[hPa]:
+    type: float
+  PM_1_0:
+    type: float
+  PM_2_5:
+    type: float
+  NC_0_5:
+    type: float
+  NC_1_0:
+    type: float
+  NC_2_5:
+    type: float
+  CNT:
+    type: integer
+  Fire_Alarm:
+    type: integer
+
+target_column:
+  name:
+    type: integer
+    allowed: ["Fire_Alarm"]
+

@@ -91,7 +91,7 @@ class DataIngestion:
             raise CustomException(f"Error fetching data from MongoDB: {e}")
 
     def save_data(self, all_data):
-        output_path = str(Path(self.config.root_dir) / 'iot_network_data.parquet')
+        output_path = str(Path(self.config.root_dir) / 'smoke_data.parquet')
         all_data.to_parquet(output_path, index=False)
         logger.info(f"Data fetched from MongoDB and saved to {output_path}")
         return output_path
