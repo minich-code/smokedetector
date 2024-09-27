@@ -1,0 +1,7 @@
+artifacts_root: artifacts
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_validation/smoke_iot_data.parquet
+  slack_webhook_url: https://hooks.slack.com/services/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
+
