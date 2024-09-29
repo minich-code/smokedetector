@@ -1,0 +1,12 @@
+
+artifacts_root: artifacts
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  train_features_path: artifacts/data_transformation/train_data.pt
+  train_targets_path: artifacts/data_transformation/train_labels.pt
+  val_features_path: artifacts/data_transformation/val_data.pt
+  val_targets_path: artifacts/data_transformation/val_labels.pt
+  
+  val_metrics_path: artifacts/model_trainer/train-val-loss.json
+  model_name: fire_alarm_model

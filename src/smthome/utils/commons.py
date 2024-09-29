@@ -189,3 +189,6 @@ def get_size(path: Path) -> str:
     except Exception as e:
         logging.error(f"Error getting size for file at: {path}, Error: {str(e)}")
         raise CustomException(f"Error getting size for file at: {path}, Error: {str(e)}")
+
+
+

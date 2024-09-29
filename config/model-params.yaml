@@ -1,0 +1,9 @@
+dnn_params:
+  batch_size: 128
+  learning_rate: 0.001
+  epochs: 7
+  optimizer: Adam
+  loss_function: BCELoss
+  activation_function: relu
+
+  

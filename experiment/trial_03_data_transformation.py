@@ -110,8 +110,6 @@ class DataTransformation:
 
         logger.info(f"Data shape after dropping unused columns: {df.shape[0]} rows, {df.shape[1]} columns")
 
-
-
         # Drop Missing Values 
         df = df.dropna()
 
@@ -155,7 +153,7 @@ class DataTransformation:
 
         # Save tensors
         tensors = [X_train_tensor, y_train_tensor, X_val_tensor, y_val_tensor, X_test_tensor, y_test_tensor]
-        names = ['X_train', 'y_train', 'X_val', 'y_val', 'X_test', 'y_test']
+        names = ['train_data', 'train_labels', 'val_data', 'val_labels', 'test_data', 'test_labels']
         self.save_tensors(tensors, names)
 
         return train_dataset, val_dataset, test_dataset
