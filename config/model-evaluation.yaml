@@ -1,0 +1,16 @@
+artifacts_root: artifacts
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  val_features_path: artifacts/data_transformation/val_data.pt
+  val_target_path: artifacts/data_transformation/val_labels.pt
+  model_path: artifacts/model_trainer/fire_alarm_model.pt
+  metric_file_name: artifacts/model_evaluation/evaluation_metrics.json
+  validation_metrics_path: artifacts/model_evaluation/val_metrics.txt
+  model_name: fire_alarm_model
+  training_metrics_path: artifacts/model_trainer/training_metrics.json
+  report_path: artifacts/model_evaluation/classification_rep.txt
+  confusion_matrix_report: artifacts/model_evaluation/confusion_matrix_rep.txt
+
+
+

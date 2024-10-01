@@ -113,6 +113,26 @@ def save_json(path: Path, data: dict):
         logging.error(f"Error saving JSON file at: {path}, Error: {str(e)}")
         raise CustomException(f"Error saving JSON file at: {path}, Error: {str(e)}")
 
+# def save_json(path: Path, data: dict):
+#     """
+#     Saves a dictionary to a JSON file.
+
+#     Args:
+#         path (Path): Path where the JSON file will be saved.
+#         data (dict): Dictionary to save as JSON.
+#     """
+#     try:
+#         # Check if the path is of type Path or str
+#         if not isinstance(path, (str, Path, os.PathLike)):
+#             raise TypeError(f"Invalid path type: {type(path)}. Expected str, bytes, or os.PathLike object.")
+        
+#         with open(path, "w") as f:
+#             json.dump(data, f, indent=4)
+#         logging.info(f"JSON file saved at: {path}")
+#     except Exception as e:
+#         logging.error(f"Error saving JSON file at: {path}, Error: {str(e)}")
+#         raise CustomException(f"Error saving JSON file at: {path}, Error: {str(e)}")
+
 
 def load_json(path: Path) -> ConfigBox:
     """
