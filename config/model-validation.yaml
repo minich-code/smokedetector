@@ -1,0 +1,14 @@
+artifacts_root: artifacts
+
+
+model_validation:
+  root_dir: artifacts/model_validation
+  test_feature_path: artifacts/data_transformation/test_data.pt
+  test_target_path: artifacts/data_transformation/test_labels.pt
+  model_path: artifacts/model_trainer/fire_alarm_model.pt
+  model_name: fire_alarm_model
+  class_report: artifacts/model_validation/classification-report.png
+  val_metric_file_name: artifacts/model_validation/metrics.json
+  report_path: artifacts/model_validation/classification_report.txt
+  confusion_matrix_report: artifacts/model_validation/confusion_matrix_rep.txt
+

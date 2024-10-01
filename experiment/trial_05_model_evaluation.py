@@ -65,7 +65,7 @@ class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
         self.config = config
         self.model = None
-        self.test_loader = None
+        self.val_loader = None
         self.y_true = []
         self.y_pred = []
         self.y_scores = []
@@ -82,17 +82,17 @@ class ModelEvaluation:
 
     def load_data(self):
         logger.info("Loading test data.")
-        X_test = torch.load(self.config.val_features_path)
-        y_test = torch.load(self.config.val_target_path)
-        dataset = TensorDataset(X_test, y_test)
-        self.test_loader = DataLoader(dataset, batch_size=128, shuffle=False, num_workers=3, persistent_workers=True)
-        logger.info("Test data loaded successfully.")
+        X_val = torch.load(self.config.val_features_path)
+        y_val = torch.load(self.config.val_target_path)
+        dataset = TensorDataset(X_val, y_val)
+        self.val_loader = DataLoader(dataset, batch_size=128, shuffle=False, num_workers=3, persistent_workers=True)
+        logger.info("Validation data loaded successfully.")
 
     def evaluate(self):
-        logger.info("Starting model evaluation on test data.")
+        logger.info("Starting model evaluation on validation data.")
         self.model.eval()
         with torch.no_grad():
-            for batch in self.test_loader:
+            for batch in self.val_loader:
                 x, y = batch
                 logits = self.model(x)
                 probs = torch.sigmoid(logits)
@@ -102,18 +102,11 @@ class ModelEvaluation:
                 self.y_scores.extend(probs.cpu().numpy())
         logger.info("Model evaluation completed.")
 
-    # def generate_classification_report(self):
-    #     logger.info("Generating classification report.")
-    #     report = classification_report(self.y_true, self.y_pred, output_dict=True)
-    #     report_path = self.config.root_dir
-    #     save_json(report, report_path)
-    #     print("Classification Report:\n", classification_report(self.y_true, self.y_pred))
-    #     logger.info(f"Classification report saved to {report_path}")
 
     def generate_classification_report(self):
         logger.info("Generating classification report.")
         report = classification_report(self.y_true, self.y_pred, output_dict=True)
-        report_path = self.config.report_path / "classification_report.txt"
+        report_path = os.path.join(self.config.report_path, "classification_report.txt") # self.config.report_path / "classification_report.txt"
         
         with open(self.config.report_path, "w") as f:
             f.write(classification_report(self.y_true, self.y_pred))
@@ -126,7 +119,7 @@ class ModelEvaluation:
         cm_path = self.config.confusion_matrix_report
         plt.figure(figsize=(6, 6))
         plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-        plt.title('Confusion Matrix (Test Data)')
+        plt.title('Confusion Matrix (Validation Data)')
         plt.colorbar()
         tick_marks = np.arange(2)  # Assuming two classes (0 and 1)
         plt.xticks(tick_marks, ['No Fire', 'Fire'], rotation=45)
@@ -148,10 +141,10 @@ class ModelEvaluation:
         logger.info("Generating Precision-Recall curve.")
         precision, recall, _ = precision_recall_curve(self.y_true, self.y_scores)
         plt.figure(figsize=(8, 6))
-        plt.plot(recall, precision, label='Precision-Recall Curve (Test Data)')
+        plt.plot(recall, precision, label='Precision-Recall Curve (Validation Data)')
         plt.xlabel('Recall')
         plt.ylabel('Precision')
-        plt.title('Precision-Recall Curve (Test Data)')
+        plt.title('Precision-Recall Curve (Validation Data)')
         plt.legend()
         plt.savefig(os.path.join(self.config.root_dir, "precision_recall_curve.png"))
         plt.close()
@@ -162,11 +155,11 @@ class ModelEvaluation:
         fpr, tpr, thresholds = roc_curve(self.y_true, self.y_scores)
         roc_auc = auc(fpr, tpr)
         plt.figure(figsize=(8, 6))
-        plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {roc_auc:.2f}) (Test Data)')
+        plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {roc_auc:.2f}) (Validation Data)')
         plt.plot([0, 1], [0, 1], 'k--')
         plt.xlabel('False Positive Rate')
         plt.ylabel('True Positive Rate')
-        plt.title('Receiver Operating Characteristic (ROC) Curve (Test Data)')
+        plt.title('Receiver Operating Characteristic (ROC) Curve (Validation Data)')
         plt.legend()
         plt.savefig(os.path.join(self.config.root_dir, 'roc_curve.png'))  
         plt.close()
