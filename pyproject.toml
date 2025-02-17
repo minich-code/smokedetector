@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smokedetector"
+version = "0.0.1"
+description = "This is a project to detect smoke in your home"
+readme = "README.md"
+#long_description = "file:README.md"
+#long_description_content_type = "text/markdown"
+license = { text = "MIT" }
+authors = [
+    { name = "Western", email = "minichworks@gmail.com" }
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+keywords = ["deep learning", "smart home", "smoke detector", "IoT"]
+
+
+
+dependencies = [
+    "category_encoders",
+    "cerberus",
+    "dotenv-cli",
+    "ensure",
+    "flask",
+    "flask-cors",
+    "flask-mail",
+    "joblib",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pip-chill",
+    "python-json-logger",
+    "pymongo",
+    "python-box",
+    "python-dotenv",
+    "pyyaml",
+    "pytorch-lightning",
+    "requests",
+    "scikit-learn",
+    "seaborn",
+    "streamlit",
+    "torch",
+    "types-pyyaml",
+    "tqdm"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "flake8"]
+
+[project.scripts]
+smokedetector = "smokedetector.scripts.smokedetector:main"

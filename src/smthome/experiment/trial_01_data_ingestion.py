@@ -1,5 +1,7 @@
 
 # File: data_ingestion.py
+#import sys
+#sys.path.append('/home/western/DS_Projects/smokedetector')
 
 from dataclasses import dataclass
 from pathlib import Path
